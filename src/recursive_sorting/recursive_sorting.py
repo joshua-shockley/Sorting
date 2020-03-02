@@ -1,3 +1,32 @@
+import random
+
+
+def make_tnum():
+    tnum = random.randint(1, 10)
+    # print('random number:', tnum)
+    return tnum
+
+
+def make_list():
+    rndm_list = []
+    count = 0
+    # set a list range
+    while count < 10:
+        tnum = make_tnum()
+        if tnum not in rndm_list:
+
+            # use empty list to store and count for ending loop
+            rndm_list.append(tnum)
+            count += 1
+            print("tnum:", tnum, "list:", rndm_list)
+
+    # return
+    return rndm_list
+
+
+print(make_list())
+
+
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
 def merge(arrA, arrB):  # this part takes two lists/arrays and merges them and returns the new array. this is the helper for the function below
     elements = len(arrA) + len(arrB)
@@ -7,7 +36,7 @@ def merge(arrA, arrB):  # this part takes two lists/arrays and merges them and r
     a = 0
     b = 0
     for i in range(elements):  # so far its only adding on thing to the merged array... which means it's adding only in the one item at the arr index of 0 then
-        #this checks to see if one left or right is empty and then uses the other array to add to merged_arr
+        # this checks to see if one left or right is empty and then uses the other array to add to merged_arr
         # if a >= len(arrA):#if the initial value "0" is greater or equal to the length of arrA the use arrB and increment b to input from the next indicie from arrB
         #     merged_arr[i] = arrB[b]
         #     b += 1 # this allows for movement through the right side split arr and moves to next index so that it doesn't continue adding the smallest number instead
@@ -22,25 +51,25 @@ def merge(arrA, arrB):  # this part takes two lists/arrays and merges them and r
         #     merged_arr[i] = arrB[b]
         #     b+=1 # this allows for movement through the right side split arr and moves to next index so that it doesn't continue adding the smallest number instead
 
-
-        ### 
-        # BELOW IS MY VERSION: I was getting the length and matching with a/b count but wasn't using it properly... 
-        # had it looking for a 0 length instead of using the count to verify that it wouldn't try to continue past the length of arrA/arrB
-        #----- the use of that count was what i was missing. 
         ###
-        #the first two should basically check for empty list/array and then use the other
+        # BELOW IS MY VERSION: I was getting the length and matching with a/b count but wasn't using it properly...
+        # had it looking for a 0 length instead of using the count to verify that it wouldn't try to continue past the length of arrA/arrB
+        # ----- the use of that count was what i was missing.
+        ###
+        # the first two should basically check for empty list/array and then use the other
+        # before it was if len(arrA) == 0 and len(arrB) >=1: ###looks like using the previously defined index startingpoint/counter saves the need to over condition AND use it to track and use index/value
         if len(arrA) <= a:
             merged_arr[i] = arrB[b]
-            b +=1
-        elif len(arrB) <=b:
+            b += 1
+        elif len(arrB) <= b:
             merged_arr[i] = arrA[a]
-            a +=1
+            a += 1
         elif arrA[a] < arrB[b]:
             merged_arr[i] = arrA[a]
-            a+=1
+            a += 1
         elif arrB[b] < arrA[a]:
             merged_arr[i] = arrB[b]
-            b+=1
+            b += 1
     print('merged_arr in merge function: ', merged_arr)
     return merged_arr
 
@@ -49,7 +78,7 @@ def merge(arrA, arrB):  # this part takes two lists/arrays and merges them and r
 def merge_sort(arr):
     print('arr:', arr)
     # TO-DO
-    if len(arr) <= 1: #returns here is the list is already a length of 1 or less.. there is no need at that point to split
+    if len(arr) <= 1:  # returns here is the list is already a length of 1 or less.. there is no need at that point to split
         return arr
     # split in half until it is down to left versus right with only one item in each to compare
     left = merge_sort(arr[:len(arr)//2])
@@ -61,10 +90,12 @@ def merge_sort(arr):
 
 
 list = [3, 1, 5, 9, 7, 6, 4, 2, 8]
-print(merge_sort(list))
-
+print('doing with my made up list just above:', merge_sort(list))
+print('doing with random number generated list:', merge_sort(make_list()))
 
 # STRETCH: implement an in-place merge sort algorithm
+
+
 def merge_in_place(arr, start, mid, end):
     # TO-DO
 
